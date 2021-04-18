@@ -1,5 +1,5 @@
 """
-Uso: Cifrar informacion con cesar
+Uso: Encriptar y desencriptar informacion con cesar
 Creado: Andrés Hernández Mata
 Version: 1.1.0
 Python: 3.9.1
