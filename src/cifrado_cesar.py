@@ -15,3 +15,5 @@ while espacios > 0:
         espacios += 1
 key = len(clave)
 
+SYMBOLS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890 !?.'
+
