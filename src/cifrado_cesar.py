@@ -1,10 +1,14 @@
 """
 Uso: Cifrar informacion con cesar
 Creado: Andrés Hernández Mata
-Version: 1.0.0
+Version: 1.1.0
 Python: 3.9.1
 Fecha: 17 Abril 2020
 """
+
+import os
+
+os.system("cls")
 
 message = input('Ingresa el mensaje: ')
 espacios = 1
@@ -16,4 +20,24 @@ while espacios > 0:
 key = len(clave)
 
 SYMBOLS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890 !?.'
+
+translated = ''
+
+for symbol in message:
+    # Note: Only symbols in the `SYMBOLS` string can be encrypted/decrypted.
+    if symbol in SYMBOLS:
+        symbolIndex = SYMBOLS.find(symbol)
+        translatedIndex = symbolIndex + key
+        
+        if translatedIndex >= len(SYMBOLS):
+            translatedIndex = translatedIndex - len(SYMBOLS)
+        elif translatedIndex < 0:
+            translatedIndex = translatedIndex + len(SYMBOLS)
+
+        translated = translated + SYMBOLS[translatedIndex]
+    else:
+        # Append the symbol without encrypting/decrypting:
+        translated = translated + symbol
+
+print(translated)
 
