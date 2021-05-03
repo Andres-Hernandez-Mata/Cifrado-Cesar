@@ -22,26 +22,33 @@ def main():
     
     if params.modo == 'e':
         print(datetime.now(), "\033[0;32m [INFO] Encriptando mensaje... \033[0;0m")
-        cesar(params.mensaje,True,params.clave)
+        resultado = cesar(params.mensaje,True,params.clave)
+        print(datetime.now(), "\033[0;33m [INFO] %s \033[0;0m" % params.mensaje)
+        print(datetime.now(), "\033[0;36m [INFO] %s \033[0;0m" % resultado)
     elif params.modo == 'd':
         print(datetime.now(), "\033[0;32m [INFO] Desencriptando mensaje... \033[0;0m")
-        cesar(params.mensaje,False,params.clave)
+        resultado = cesar(params.mensaje,False,params.clave)
+        print(datetime.now(), "\033[0;33m [INFO] %s \033[0;0m" % params.mensaje)
+        print(datetime.now(), "\033[0;36m [INFO] %s \033[0;0m" % resultado)
     else:
         print(datetime.now(), "\033[0;32m [INFO] Seleccione el modo correcto... \033[0;0m")
+
+    print(datetime.now(), "\033[0;32m [INFO] Success \033[0;0m")
 
 def cesar(mensaje,modo,clave):
     simbolos = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890'
     resultado = ''
+    
     try:
         for simbolo in mensaje:
             if simbolo in simbolos:
                 indice_simbolo = simbolos.find(simbolo)
                 # Encriptar
                 if modo:
-                    indice_nuevo = indice_simbolo + clave
+                    indice_nuevo = indice_simbolo + int(clave)
                 # Desencriptar
                 elif not modo:
-                    indice_nuevo = indice_simbolo - clave
+                    indice_nuevo = indice_simbolo - int(clave)
 
                 if indice_nuevo >= len(simbolos):
                     indice_nuevo = indice_nuevo - len(simbolos)
@@ -49,10 +56,13 @@ def cesar(mensaje,modo,clave):
                     indice_nuevo = indice_nuevo + len(simbolos)
                 resultado = resultado + simbolos[indice_nuevo]
             else:
-                resultado = resultado + simbolo
+                resultado = resultado + simbolo    
     except Exception as error:
         print(datetime.now(), "\033[0;91m [ERROR] Ha ocurrido un error")
         print(error)
+        quit()
+    
+    return resultado
 
 
 if __name__ == "__main__":    
