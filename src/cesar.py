@@ -13,7 +13,7 @@ from datetime import datetime
 def main():
     os.system("cls")
     print(datetime.now(), "\033[0;32m [INFO] Iniciando... \033[0;0m")
-    description = """Example -modo e -mensaje 'Hola Mundo' -clave 3 \nExample -modo h -mensaje 'Hola Mundo' -clave 3 \nExample -modo d -mensaje 'Hola Mundo'"""
+    description = """Example -modo e -mensaje 'Hola Mundo' -clave 3 \nExample -modo d -mensaje 'Krod Pxqgr' -clave 3 \nExample -modo h -mensaje 'Hola Mundo'"""
     parser = argparse.ArgumentParser(description='Cifrado cesar', epilog=description, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("-modo", metavar='--modo', dest="modo", help="Modo para e (encriptar), d (desencriptar) o h (hackear)", required=True)
     parser.add_argument("-mensaje", metavar='--mensaje', dest="mensaje", help="Mensaje para cifrar, desencriptar o para hackear", required=True)
@@ -31,7 +31,8 @@ def main():
         print(datetime.now(), "\033[0;33m [INFO] %s \033[0;0m" % params.mensaje)
         print(datetime.now(), "\033[0;36m [INFO] %s \033[0;0m" % resultado)
     else:
-        print(datetime.now(), "\033[0;32m [INFO] Seleccione el modo correcto... \033[0;0m")
+        print(datetime.now(), "\033[0;91m [INFO] Seleccione el modo correcto... \033[0;0m")
+        quit()
 
     print(datetime.now(), "\033[0;32m [INFO] Success \033[0;0m")
 
