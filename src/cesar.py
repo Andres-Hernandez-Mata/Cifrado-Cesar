@@ -9,6 +9,7 @@ Fecha: 02 Mayo 2020
 import argparse
 import os
 from datetime import datetime
+import detect_spanish
 
 def main():
     os.system("cls")
@@ -30,11 +31,38 @@ def main():
         resultado = cesar(params.mensaje,False,params.clave)
         print(datetime.now(), "\033[0;33m [INFO] %s \033[0;0m" % params.mensaje)
         print(datetime.now(), "\033[0;36m [INFO] %s \033[0;0m" % resultado)
+    elif params.modo == 'h':
+        print(datetime.now(), "\033[0;32m [INFO] Hackeando mensaje... \033[0;0m")
+        resultado = hackear(params.mensaje)
+        print(datetime.now(), "\033[0;33m [INFO] %s \033[0;0m" % params.mensaje)
+        if resultado == None:
+            print(datetime.now(), "\033[0;91m [INFO] El mensaje descifrado no es parte del idioma en español \033[0;0m")
+            quit()
+        print(datetime.now(), "\033[0;36m [INFO] %s \033[0;0m" % resultado)    
     else:
-        print(datetime.now(), "\033[0;91m [INFO] Seleccione el modo correcto... \033[0;0m")
+        print(datetime.now(), "\033[0;91m [INFO] Seleccione el modo correcto... \033[0;0m")        
         quit()
 
     print(datetime.now(), "\033[0;32m [INFO] Success \033[0;0m")
+
+def hackear(mensaje):
+    for clave in range(1, len(mensaje)):        
+        decryptedText = cesar(mensaje,False,clave)
+        print(datetime.now(), "\033[0;32m [INFO] Clave #%s \033[0;0m %s" % (clave, decryptedText))
+
+        if detect_spanish.isSpanish(decryptedText):
+            print()
+            print('Posible mensaje descifrado:')
+            print('Clave %s: %s' % (clave, decryptedText[:100]))
+            print()
+            print('¿Si?')
+            response = input('> ')
+            print()
+
+            if response.strip().upper().startswith('SI'):
+                return decryptedText
+
+    return None
 
 def cesar(mensaje,modo,clave):
     simbolos = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890'
@@ -64,7 +92,6 @@ def cesar(mensaje,modo,clave):
         quit()
     
     return resultado
-
 
 if __name__ == "__main__":    
     main()
