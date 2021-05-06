@@ -12,7 +12,7 @@ Ejecutar los scripts que se encuentran en la carpeta src del repositorio.
 
 ```python	
 
-> python cesar_cifrado.py
+> python src\cesar_cifrado.py
 
 ```
 
